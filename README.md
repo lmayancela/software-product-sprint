@@ -1,6 +1,6 @@
 # Google Software Product Sprint
 
-This repo contains Lisandro Mayancela's portfolio and SPS projects.
+This repo contains Lisandro Mayancela's portfolio and SPS projects
 
 To get started:
 
