@@ -2,16 +2,51 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Lisandro's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
+      <h1>Lisandro's Portfolio</h1>
+      <div id="intro">
+        <div id = "welcome">
+            <img src="/images/posse.jpg">
+            <p>This is my portfolio.</p>
+            <p> This page will serve as a repository of my relevant work in Computer Science and Education as well as a some fun things I do on the side! </p>
+            <button onclick="swapHidden('welcome','intro-main')">Learn More</button>
+        </div>
+        <div id="intro-main">
+            <h1>About Me</h1>
+            <p>Hello! my name is Lisandro Mayancela and I am currently pursing a Bachelor of Science in 
+                Computer Science as well as a minor in East Asian Studies and Education Studies.
+                My interest in Computer Science actually began at a young age when I fell in love with gaming and
+                wanted to help make games so that I can bring these experiences to the next generation of kids.
+                As I advanced through high school and learned more about CS, my goals shifted to wanting to work on
+                Web/App development. In college, this would once again evolve as I now have a passion for eventually
+                bringing my skills into education so that I can help foster the next generation of PoC students in tech
+                so that the field can be diversified and all students can have an equal opportunity to get involved in CS.</p>
+            <p>Click on the buttons below to learn more about myself and the work I have done!</p>
+            <div id="buttons">
+                <button onclick="swapHidden('intro-main','projects')">Projects</button>
+                <button onclick="swapHidden('intro-main','gallery')">Gallery</button>
+                <button onclick="swapHidden('intro-main','interests')">Interests & Hobbies</button>
+            </div>
+        </div>
+        <div id="projects">
+            <!--Code Goes Here-->
+        </div>
+        <div id="gallery">
+            <!--Code Goes Here-->
+        </div>
+        <div id="interests">
+            <!--Code Goes Here-->
+        </div>
+      </div>
       <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
+      <button onclick="addRandomText(greetings)">Greeting</button>
+      <p>Click here instead to get a random fact about myself!</p>
+      <button onclick="addRandomText(facts)">Fact</button>
       <div id="greeting-container"></div>
     </div>
   </body>
