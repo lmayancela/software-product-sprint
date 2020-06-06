@@ -9,7 +9,47 @@
   margin-top: 20px;
 }
 
-
 #intro-main {
+    display: none;
+}
+
+.buttons{
+    padding: 20px;
+}
+
+#projects {
+    display: none;
+}
+
+.project-box{
+    text-align: initial;
+    display: inline-flex;
+}
+
+#projects img {
+    max-width: 350px;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    border-radius: 25%;
+}
+
+.project-image{
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+.project-text{
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+#gallery{
+    display: none;
+}
+
+#interests{
     display: none;
 }

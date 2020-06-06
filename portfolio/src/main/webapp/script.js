@@ -33,6 +33,12 @@ function addRandomText(arr) {
   greetingContainer.innerText = greeting;
 }
 
+/**
+ * Makes the element with id1 hidden and reveals the element with id2 in order to "go to a different page."
+ * Params:
+ * id1 - ID of the element to be hidden.
+ * id2 - ID of the element to be un-hidden.
+ */
 function swapHidden(id1,id2) {
     const toBeHidden = document.getElementById(id1);
     const toBeRevealed = document.getElementById(id2);
