@@ -6,19 +6,33 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
+  <!--Next Steps:
+      1. Finish implementing the click feature in the gallery.
+      2. Implement the interests page.
+      3. move the buttons to the header at the top of the screen to make navigation easier.
+      4. Add more images and projects as I finish up the website's functionality.
+      5. Optimize page for all screen sizes.
+      6. Further experiment with css in order to make the page more dynamic and interesting.
+    -->
   <body>
     <div id="content">
-      <h1>Lisandro's Portfolio</h1>
-      <div id="intro">
-        <div id = "welcome">
-            <img src="/images/posse.jpg">
-            <p>This is my portfolio.</p>
-            <p> This page will serve as a repository of my relevant work in Computer Science and Education as well as a some fun things I do on the side! </p>
-            <button onclick="swapHidden('welcome','intro-main')">Learn More</button>
-        </div>
-        <div id="intro-main">
-            <h1>About Me</h1>
-            <p>Hello! my name is Lisandro Mayancela and I am currently pursing a Bachelor of Science in 
+      <div id="header">
+        <h1 class="header-text">Lisandro Mayancela</h1>
+      </div>
+      <div id="main">
+        <!--Below is the code for the introduction page.-->
+        <div id="intro">
+          <div id="main-content">
+            <div id = "welcome">
+              <img src="/images/main.jpg">
+                <h2>Welcome to my portfolio!</h2>
+                <p>This page will serve as a repository of my relevant work in Computer Science and Education as well as a some fun things I do on the side!</p>
+                <button onclick="swapHidden('welcome','intro-main')">Learn More</button>
+            </div>
+            <div id="intro-main">
+              <img src="/images/posse.jpg">
+              <h1>About Me</h1>
+              <p>Hello! my name is Lisandro Mayancela and I am currently pursing a Bachelor of Science in 
                 Computer Science as well as a minor in East Asian Studies and Education Studies.
                 My interest in Computer Science actually began at a young age when I fell in love with gaming and
                 wanted to help make games so that I can bring these experiences to the next generation of kids.
@@ -26,48 +40,73 @@
                 Web/App development. In college, this would once again evolve as I now have a passion for eventually
                 bringing my skills into education so that I can help foster the next generation of PoC students in tech
                 so that the field can be diversified and all students can have an equal opportunity to get involved in CS.</p>
-            <p>Click on the buttons below to learn more about myself and the work I have done!</p>
-            <div class="buttons">
+              <p>Click on the buttons below to learn more about myself and the work I have done!</p>
+              <div class="buttons">
                 <button onclick="swapHidden('intro-main','projects')">Projects</button>
                 <button onclick="swapHidden('intro-main','gallery')">Gallery</button>
                 <button onclick="swapHidden('intro-main','interests')">Interests & Hobbies</button>
+              </div>
             </div>
-        </div>
-        <div id="projects">
-            <h1>Projects</h1>
-            <p>This page will include various projects projects that I have worked on as well as outlining some of the
+            <!--Below is the code for the projects page.-->
+            <div id="projects">
+              <h1>Projects and Experience</h1>
+              <p>This page will include various projects projects that I have worked on as well as outlining some of the
                 work experience I have had over the years.</p> 
-            <div class="project-box">
+              <div class="project-box">
                 <div class="project-image">
-                    <h2>InspiredxSTEM</h2>
-                    <img src="/images/inspiredxSTEM.jpg">
+                  <h2>InspiredxSTEM</h2>
+                  <img src="/images/inspiredxSTEM.jpg">
                 </div>
                 <div class="project-text">
-                    <p>During my junior year of high school I was a part of planning our school's first hackathon, InspiredxSTEM.
+                  <p>During my sophomore year of high school I was a part of planning our school's first hackathon, InspiredxSTEM.
                     I assisted with advertising the event and build a simple webpage that gives visitors an introduction of
                     what the event is as well as a link to RSVP for the event. During the event itself I served as a mentor
                     to students ranging from middle school to early high school as they were working on their projects.</p>
-                    <a href="https://inspiredxstem.github.io/inspired/" target="blank">Link to website (still working as of 6/6/2020)</a>
+                  <a href="https://inspiredxstem.github.io/inspired/" target="blank">Link to website (still working as of 6/6/2020)</a>
                 </div>
-            </div>
-            <div class="buttons">
+              </div>
+              <div class="project-box">
+                <div class="project-image">
+                  <h2>Animoto</h2>
+                  <img src="/images/animoto.jpg">
+                </div>
+                <div class="project-text">
+                  <p>During the summer of 2017 I was given the opportunity to be a paid intern at Animoto, a cloud-based video creation service.
+                    throughout my time at this company I was able to not only gain a significant number of meaningful connections in the
+                    web development field, I also gained experience in working on large scale projects through git as well as writing tests and
+                    completing a redesign of the video editor (which many of its features are still live on the site).</p>
+                </div>
+              </div>   
+              <div class="buttons">
                 <button onclick="swapHidden('projects','intro-main')">Return To Main Page</button>
                 <button onclick="swapHidden('projects','gallery')">Gallery</button>
                 <button onclick="swapHidden('projects','interests')">Interests</button>
+              </div>
             </div>
-        </div>
-        <div id="gallery">
-            <!--Code Goes Here-->
-        </div>
-        <div id="interests">
-            <!--Code Goes Here-->
-        </div>
+            <!--Below is the code for the gallery page and its grid.-->
+            <div id="gallery">
+              <h1>Gallery</h1>
+              <p>Click on the photos below for some context on when these were taken!</p>
+              <div id="gallery-grid">
+                <img src="/images/posse.jpg">
+                <img src="/images/sammy.png">
+                <img src="/images/inspiredxSTEM.jpg">
+                <img src="/images/animoto.jpg">
+              </div>
+              <div class="buttons">
+                <button onclick="swapHidden('gallery','intro-main')">Return To Main Page</button>
+                <button onclick="swapHidden('gallery','projects')">Projects</button>
+                <button onclick="swapHidden('gallery','interests')">Interests</button>
+              </div>
+            </div>
+            <!--Below is the code for the "Interests" page. Due to time constraints, this page isn't implemented but the code is left here so that I can complete
+                later.-->
+            <div id="interests">
+              <h1>Interests and Hobbies</h1>
+              <p>Here are a few of my hobbies and interests!</p>
+            </div>
+          </div>
       </div>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomText(greetings)">Greeting</button>
-      <p>Click here instead to get a random fact about myself!</p>
-      <button onclick="addRandomText(facts)">Fact</button>
-      <div id="greeting-container"></div>
     </div>
   </body>
 </html>

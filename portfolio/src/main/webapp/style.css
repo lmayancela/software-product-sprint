@@ -1,8 +1,82 @@
+h1 {
+    font-family: impact;
+    color: rgb(225, 170, 18);
+}
+
+h2 {
+    font-family: Haettenschweiler;
+    font-weight: 400;
+    color: rgb(225, 170, 18);
+}
+
+p {
+    font-family: 'Arial Narrow Bold';
+    font-size: 16px;
+    color: white;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 750px;
   text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+#header {
+    position: fixed;
+    display: flex;
+    top: 0;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background: rgb(44, 62, 80);
+}
+
+#welcome img {
+    border-radius: 50%;
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+}
+
+#intro-main img {
+    border-radius: 25%;
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+}
+
+.header-text {
+    font-size: 20px;
+    font-weight: 600;
+    color:white;
+    padding-left: 25vw;
+}
+
+#intro {
+    background: rgb(0, 128, 137);
+    height:100%;
+}
+
+#main {
+    margin-top: 100px;
+    height: 100%;
+}
+
+#main-content {
+    padding-left: 20vw;
+    padding-right: 20vw;
+    padding-top: 5vh;
+    text-align: center;
 }
 
 #greeting-container {
@@ -13,7 +87,7 @@
     display: none;
 }
 
-.buttons{
+.buttons {
     padding: 20px;
 }
 
@@ -24,6 +98,7 @@
 .project-box{
     text-align: initial;
     display: inline-flex;
+    padding: 20px;
 }
 
 #projects img {
@@ -34,22 +109,34 @@
     border-radius: 25%;
 }
 
-.project-image{
+.project-image {
     text-align: center;
     width: 50%;
     margin: auto;
 }
 
-.project-text{
+.project-text {
     text-align: center;
     width: 50%;
     margin: auto;
 }
 
-#gallery{
+#gallery {
     display: none;
 }
 
-#interests{
+#gallery-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px 30px;
+}
+
+#gallery-grid img {
+    width: 300px;
+    height: 300px;
+    border-radius: 25%;
+}
+
+#interests {
     display: none;
 }
