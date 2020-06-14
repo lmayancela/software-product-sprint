@@ -48,8 +48,72 @@ function swapHidden(id1,id2) {
 
 /*Below is code that handles requests to the data servlet.*/
 
-function getWelcome() {
-    fetch('/data').then(response => response.text()).then((welcome) => {
-    document.getElementById('fetch-container').innerText = welcome;
-  });
+// Create the intro page using the JSON.
+async function loadIntro() {
+    const response = await fetch('/data');
+    const data = await response.json();
+    const intro = document.getElementById('welcome');
+    const pageData = data[0];
+
+    //Append the intro image.
+    intro.appendChild(
+        createImg(pageData[0])
+    );
+
+    //Append "Welcome to my Portfolio!"
+    intro.appendChild(
+        createH2(pageData[3])
+    );
+
+    //Append the p element that is on the intro page.
+    intro.appendChild(
+        createP(pageData[1])
+    );
+    
+    //Append the button that navigates to the following page
+    btn = createBtn(pageData[2]);
+    intro.appendChild(btn);
+    btn.onclick = function() {
+        (swapHidden('welcome','intro-main'));
+    };
+    console.log("done3");
 }
+
+//Creates an h2 element with the given parameters
+function createH2(text) {
+    const h2Element = document.createElement('h2');
+    h2Element.innerText = text;
+    return h2Element;
+}
+
+//Creates a p element with the given parameters
+function createP(text) {
+    const pElement = document.createElement('p');
+    pElement.innerText = text;
+    return pElement;
+}
+
+//Creates a button element with the given parameters
+function createBtn(text) {
+    const btn = document.createElement('button');
+    btn.innerText = text;
+    return btn;
+}
+
+//Creates an image with the given parameters
+function createImg(src) {
+    const img = document.createElement('img');
+    img.src = src;
+    return img;
+}
+/**
+ * Prints the welcome statement from the servlet.
+ * This code will be commented out in favor of a function that will parse the JSON received from the servlet.
+ * Like the case in the DataServlet.java file, this code is in a current PR and I am unsure as to whether it
+ * is okay to fully remove this code until its PR is merged.
+ */
+// function getWelcome() {
+//     fetch('/data').then(response => response.text()).then((welcome) => {
+//     document.getElementById('welcome-container').innerText = welcome;
+//   });
+// }
