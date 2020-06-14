@@ -45,3 +45,11 @@ function swapHidden(id1,id2) {
     toBeRevealed.style.display = 'inline-block';
     toBeHidden.style.display = 'none';
 }
+
+/*Below is code that handles requests to the data servlet.*/
+
+function getWelcome() {
+    fetch('/data').then(response => response.text()).then((welcome) => {
+    document.getElementById('fetch-container').innerText = welcome;
+  });
+}

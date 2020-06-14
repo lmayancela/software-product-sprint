@@ -14,7 +14,7 @@
       5. Optimize page for all screen sizes.
       6. Further experiment with css in order to make the page more dynamic and interesting.
     -->
-  <body>
+  <body onload="getWelcome()">
     <div id="content">
       <div id="header">
         <h1 class="header-text">Lisandro Mayancela</h1>
@@ -25,7 +25,7 @@
           <div id="main-content">
             <div id = "welcome">
               <img src="/images/main.jpg">
-                <h2>Welcome to my portfolio!</h2>
+                <h2 id="fetch-container"></h2>
                 <p>This page will serve as a repository of my relevant work in Computer Science and Education as well as a some fun things I do on the side!</p>
                 <button onclick="swapHidden('welcome','intro-main')">Learn More</button>
             </div>
