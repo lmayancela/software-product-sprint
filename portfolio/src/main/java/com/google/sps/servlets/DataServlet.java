@@ -17,6 +17,7 @@ package com.google.sps.servlets;
 import java.io.IOException;
 import com.google.sps.data.Comment;
 import com.google.gson.Gson;
+import com.google.appengine.api.datastore.*;
 import java.util.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,15 +50,23 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    //Initialize Linked List/s
+    // Initialize Linked List/s
     data = new ArrayList<Object[]>();
     buildIntroData();
     buildCommentData();
+
+    // Get comment data from the Datastore
+    Query query = new Query("cmt");
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    // Create the linked list object from the data.
+    createList(results);
     
-    //Convert the List/s to JSON
+    // Convert the List/s to JSON
     String json = convertToJson(data);
 
-    //Send JSON as the response
+    // Send JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
@@ -75,14 +84,29 @@ public class DataServlet extends HttpServlet {
       return;
     }
 
-    // Instantiate a Comment object and add to data.
-    Comment comment = new Comment(username, usercomment);
-    addComment(comment);
+    // Create an Entity of the comment
+    Entity msgEntity = new Entity("cmt");
+    msgEntity.setProperty("author", username);
+    msgEntity.setProperty("comment", usercomment);
+
+    // Store the entity in the datastore.
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(msgEntity);
 
     // Redirect back to the html page.
     response.sendRedirect("/index.html");
   }
   
+  // Creates the linked list containing the comments using the Datastore.
+  private  void createList(PreparedQuery results) {
+    for (Entity entity : results.asIterable()) {
+      String username = (String) entity.getProperty("author");
+      String usercomment = (String) entity.getProperty("comment");
+      Comment comment = new Comment(username, usercomment);
+      addComment(comment);
+    }
+  }
+
   // Adds a comment into the Servlet's internal data.
   private void addComment(Comment comment) {
       comments.add(comment);
