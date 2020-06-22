@@ -12,48 +12,71 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Since addRandomGreeting and addFact are similar functions, I defined the greeting and facts arrays outside
- * these functions so that I can make a more general function to print out these statements. The arrays are defined below.
- */
-const greetings =
-    ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
-const facts = 
-    ['I am actually a brother of the Gamma Chi chapter of the Sigma Alpha Mu Fraternity.','I have practiced playing both the Bass guitar and Ocarina.','I am studying Japanese and can speak it at an intermediate level (ぼくは日本に留学したい).','I never learned how to ride a bike.'];
+//This variable will keep track of the current page that is being displayed.
+var currPage = "";
+var currView = "content";
 
 /**
- * Adds a random greeting to the page.
+ * Makes the element stored in currPage hidden and reveals the element with id in order to "go to a different page."
+ * Params:
+ * id - ID of the element to be un-hidden.
  */
-function addRandomText(arr) {
-  // Pick a random greeting.
-  const greeting = arr[Math.floor(Math.random() * arr.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+function swapHidden(id) {
+    if(id != currPage){
+        const toBeHidden = document.getElementById(currPage);
+        const toBeRevealed = document.getElementById(id);
+        toBeRevealed.style.display = 'inline-block';
+        toBeHidden.style.display = 'none';
+        currPage = id;
+    }
 }
 
 /**
- * Makes the element with id1 hidden and reveals the element with id2 in order to "go to a different page."
- * Params:
- * id1 - ID of the element to be hidden.
- * id2 - ID of the element to be un-hidden.
+ * Handles swapping between portfolio and comment views
  */
-function swapHidden(id1,id2) {
-    const toBeHidden = document.getElementById(id1);
-    const toBeRevealed = document.getElementById(id2);
-    toBeRevealed.style.display = 'inline-block';
-    toBeHidden.style.display = 'none';
+function swapView() {
+    if(currView == "content") {
+        document.getElementById(currView).style.display = 'none';
+        document.getElementById('comment-content').style.display = 'inline-block';
+        currView = "comment-content";
+    } else {
+        console.log("1");
+        document.getElementById(currView).style.display = 'none';
+        console.log("2");
+        document.getElementById('content').style.display = 'inline-block';
+        console.log("3");
+        currView = "content";
+    }
+}
+
+//Returns an array containing every comment made.
+function getComments(params) {
+    const data = document.getElementsByClassName("comment-style");
+    var i;
+    for(i=0; i<data.length; i++) {
+        const comment = data[i].children[1].innerText;
+        params.append("comments", comment);
+    }
+}
+
+//Replaces old comments with those of the new language.
+function postNewComments(data) {
+    const comments = document.getElementsByClassName("comment-style");
+    var i;
+    for(i=0; i<data.length; i++) {
+        const comment = comments[i].children[1];
+        comment.innerHTML = data[i];
+    }
 }
 
 /*Below is code that handles requests to the data servlet.*/
 
-// Create the intro page using the JSON.
+// On page load, the data will be fetched specific parts will be passed into the various load functions that must run.
 async function load() {
     const response = await fetch('/data');
     const data = await response.json();
-    loadIntro(data[0]);
     loadComments(data[1][0]);
+    currPage = "landing";
 }
 
 async function loadComments(commentData) {
@@ -67,37 +90,30 @@ async function loadComments(commentData) {
             createH2(author)
         );
         wrapper.appendChild(
-            createP("Comment: " + comment)
+            createP(comment)
         );
         commentSection.appendChild(wrapper);
     }
 }
 
-// Creates the intro page to the portfolio.
-function loadIntro(pageData) {
-    const intro = document.getElementById('welcome');
+async function translate() {
+    //Get the language code from what the user selected.
+    const languageCode = document.getElementById('language').value;
 
-    //Append the intro image.
-    intro.appendChild(
-        createImg(pageData[0])
-    );
+    //Define parameters for the request.
+    const params = new URLSearchParams();
+    params.append('languageCode', languageCode);
+    getComments(params);
 
-    //Append "Welcome to my Portfolio!"
-    intro.appendChild(
-        createH2(pageData[3])
-    );
-
-    //Append the p element that is on the intro page.
-    intro.appendChild(
-        createP(pageData[1])
-    );
+    //Make the fetch request 
+    const response = await fetch('/translate', {
+      method: 'POST',
+      body: params
+    });
+    const data = await response.json();
     
-    //Append the button that navigates to the following page
-    btn = createBtn(pageData[2]);
-    intro.appendChild(btn);
-    btn.onclick = function() {
-        (swapHidden('welcome','intro-main'));
-    };
+    //Post the new text
+    postNewComments(data);
 }
 
 //Creates an h2 element with the given parameters
