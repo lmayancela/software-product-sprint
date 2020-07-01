@@ -108,7 +108,7 @@ public class DataServlet extends HttpServlet {
   }
 
   // Adds a comment into the Servlet's internal data.
-  private void addComment(Comment comment) {
+  public void addComment(Comment comment) {
       comments.add(comment);
   }
 
@@ -140,9 +140,23 @@ public class DataServlet extends HttpServlet {
   }
 
   // Returns the JSON representation of the given Linked List.
-  private String convertToJson(ArrayList<Object[]> data) {
+  public String convertToJson(ArrayList<Object[]> data) {
     Gson gson = new Gson();
     String json = gson.toJson(data);
     return json;
   }
+
+  // BELOW IS ARE HELPER METHODS FOR THE TESTS THAT ARE RUN IN THE PortfolioTest.java FILE
+  
+  //initializes the data ArrayList.
+  public ArrayList<Object[]> initData() {
+    // Initialize List/s
+    data = new ArrayList<Object[]>();
+    buildIntroData();
+    buildCommentData();
+
+    // Return the internal data list.
+    return data;
+  }
+
 }
