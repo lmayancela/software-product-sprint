@@ -15,6 +15,7 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import com.google.sps.data.Comment;
 import com.google.gson.Gson;
 import java.util.*;
 import javax.servlet.annotation.WebServlet;
@@ -33,13 +34,25 @@ public class DataServlet extends HttpServlet {
    *part of the JSON response.
   */
   private String welcome = "Welcome to my portfolio!";
-  private ArrayList<String[]> data;
+
+  // An array list containing all the data that will be recieved with a Get request.
+  private ArrayList<Object[]> data;
+  
+  /**
+   * A linked list that will store every comment on the site.
+   *
+   * A linked list is used instead of an ArrayList in order to ensure that a deletion 
+   * implementation occurs faster in cases where the comment to be deleted is in the
+   * middle of the list.
+   */
+  private LinkedList<Comment> comments = new LinkedList<Comment>();;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     //Initialize Linked List/s
-    data = new ArrayList<String[]>();
+    data = new ArrayList<Object[]>();
     buildIntroData();
+    buildCommentData();
     
     //Convert the List/s to JSON
     String json = convertToJson(data);
@@ -49,11 +62,37 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(json);
   }
 
-  //Builds the intro-data Linked List.
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String username = request.getParameter("user-name");
+    String usercomment = request.getParameter("user-comment");
+
+    // Check to see if any of the responses are blank.
+    if(username == "" || usercomment == "") {
+      response.setContentType("text/html");
+      response.getWriter().println("One of the fields are empty.");
+      return;
+    }
+
+    // Instantiate a Comment object and add to data.
+    Comment comment = new Comment(username, usercomment);
+    addComment(comment);
+
+    // Redirect back to the html page.
+    response.sendRedirect("/index.html");
+  }
+  
+  // Adds a comment into the Servlet's internal data.
+  private void addComment(Comment comment) {
+      comments.add(comment);
+  }
+
+  // Builds the intro-data Linked List.
   /**
    * I implemented the data this way in order to make it easier for me to extend this implementation to the rest of
-   * the portfolio's pages. This way, I can just have my data contain various arrays for the different pages/data I
-   * need to load onto the page.
+   * the portfolio's pages. This way, If I feel like I have to,I can just have my data contain various arrays for 
+   * the different pages/data I need to load onto the page.
    */
   private void buildIntroData() {
     String[] intro_page = new String[4];
@@ -68,8 +107,16 @@ public class DataServlet extends HttpServlet {
     data.add(intro_page);
   }
 
-  //Returns the JSON representation of the given Linked List.
-  private String convertToJson(ArrayList<String[]> data) {
+  // Builds the comment-data that will be stored in the LinkedList.
+  private void buildCommentData() {
+    // The comment data is first wrapped in an Object array of size one so that it can be added into the Object[] array list.
+    Object[] wrap = new Object[1];
+    wrap[0] = comments;
+    data.add(wrap);
+  }
+
+  // Returns the JSON representation of the given Linked List.
+  private String convertToJson(ArrayList<Object[]> data) {
     Gson gson = new Gson();
     String json = gson.toJson(data);
     return json;

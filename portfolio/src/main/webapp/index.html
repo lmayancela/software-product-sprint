@@ -14,7 +14,7 @@
       5. Optimize page for all screen sizes.
       6. Further experiment with css in order to make the page more dynamic and interesting.
     -->
-  <body onload="loadIntro()">
+  <body onload="load()">
     <div id="content">
       <div id="header">
         <h1 class="header-text">Lisandro Mayancela</h1>
@@ -97,9 +97,20 @@
             </div>
             <!--Below is the code for the "Interests" page. Due to time constraints, this page isn't implemented but the code is left here so that I can complete
                 later.-->
-            <div id="interests">
-              <h1>Interests and Hobbies</h1>
-              <p>Here are a few of my hobbies and interests!</p>
+            <div id="comments">
+              <h2>Comments</h2>
+              <p>Feel free to leave comments below!</p>
+              <form action="/data" method="POST">
+                <p>Name</p>
+                <input type="text" name="user-name">
+                <br/>
+                <p>Comment</p>
+                <input type="text" name="user-comment">
+                <br/> <br/>
+                <input type="submit" />
+              </form>
+              <div id="comment-box">
+              </div>
             </div>
           </div>
       </div>

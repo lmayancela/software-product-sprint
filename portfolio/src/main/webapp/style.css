@@ -1,3 +1,4 @@
+/* These are general stylings that are used throughout the portfolio. */
 h1 {
     font-family: impact;
     color: rgb(225, 170, 18);
@@ -39,6 +40,39 @@ html, body {
     background: rgb(44, 62, 80);
 }
 
+.header-text {
+    font-size: 20px;
+    font-weight: 600;
+    color:white;
+    padding-left: 25vw;
+}
+
+#main {
+    margin-top: 100px;
+    height: 100%;
+}
+
+#main-content {
+    padding-left: 20vw;
+    padding-right: 20vw;
+    padding-top: 5vh;
+    text-align: center;
+}
+
+/* Below is styling for the intro and About Me pages. */
+#greeting-container {
+  margin-top: 20px;
+}
+
+#intro-main {
+    display: none;
+}
+
+#intro {
+    background: rgb(0, 128, 137);
+    height:100%;
+}
+
 #welcome img {
     border-radius: 50%;
     max-width: 300px;
@@ -55,42 +89,12 @@ html, body {
     height: auto;
 }
 
-.header-text {
-    font-size: 20px;
-    font-weight: 600;
-    color:white;
-    padding-left: 25vw;
-}
-
-#intro {
-    background: rgb(0, 128, 137);
-    height:100%;
-}
-
-#main {
-    margin-top: 100px;
-    height: 100%;
-}
-
-#main-content {
-    padding-left: 20vw;
-    padding-right: 20vw;
-    padding-top: 5vh;
-    text-align: center;
-}
-
-#greeting-container {
-  margin-top: 20px;
-}
-
-#intro-main {
-    display: none;
-}
-
+/* This is the styling for the page's buttons. */
 .buttons {
     padding: 20px;
 }
 
+/* Below is the styling for the Projects page. */
 #projects {
     display: none;
 }
@@ -121,6 +125,7 @@ html, body {
     margin: auto;
 }
 
+/* Below is the styling for the gallery. */
 #gallery {
     display: none;
 }
@@ -137,6 +142,16 @@ html, body {
     border-radius: 25%;
 }
 
-#interests {
-    display: none;
+/* Bwlow is all the styling for the comment section. */
+#comments {
+    background: rgb(0, 176, 166);
+}
+
+.comment-style {
+    text-align: left;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    margin-left: 5vw;
+    margin-right: 5vw
+    background: rgb(7, 36, 70);
 }

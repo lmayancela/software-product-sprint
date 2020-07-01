@@ -49,11 +49,33 @@ function swapHidden(id1,id2) {
 /*Below is code that handles requests to the data servlet.*/
 
 // Create the intro page using the JSON.
-async function loadIntro() {
+async function load() {
     const response = await fetch('/data');
     const data = await response.json();
+    loadIntro(data[0]);
+    loadComments(data[1][0]);
+}
+
+async function loadComments(commentData) {
+    const commentSection = document.getElementById('comment-box');
+    for(i=0; i<commentData.length; i++) {
+        const comment = commentData[i].comment;
+        const author = commentData[i].username;
+        const wrapper = document.createElement('div');
+        wrapper.classList.add("comment-style");
+        wrapper.appendChild(
+            createH2(author)
+        );
+        wrapper.appendChild(
+            createP("Comment: " + comment)
+        );
+        commentSection.appendChild(wrapper);
+    }
+}
+
+// Creates the intro page to the portfolio.
+function loadIntro(pageData) {
     const intro = document.getElementById('welcome');
-    const pageData = data[0];
 
     //Append the intro image.
     intro.appendChild(
@@ -76,7 +98,6 @@ async function loadIntro() {
     btn.onclick = function() {
         (swapHidden('welcome','intro-main'));
     };
-    console.log("done3");
 }
 
 //Creates an h2 element with the given parameters
