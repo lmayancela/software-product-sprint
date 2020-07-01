@@ -17,13 +17,29 @@
   <body onload="load()">
     <div id="content">
       <div id="header">
-        <h1 class="header-text">Lisandro Mayancela</h1>
+        <h2 class="header-text">Lisandro Mayancela</h2>
+        <div id="header-btns">
+          <h2 onclick="swapHidden('projects')">Projects</h2>
+          <h2 onclick="swapHidden('gallery')">Gallery</h2>
+          <h2 onclick="swapHidden('intro-main')">About Me</h2>
+        </div>
+        <div id="header-language-select">
+          <select id="language">
+            <option value="en" onclick="translate()">English</option>
+            <option value="zh" onclick="translate()">Chinese</option>
+            <option value="es" onclick="translate()">Spanish</option>
+            <option value="hi" onclick="translate()">Hindi</option>
+            <option value="ar" onclick="translate()">Arabic</option>
+          </select>
+        </div>
       </div>
       <div id="main">
         <!--Below is the code for the introduction page.-->
         <div id="intro">
           <div id="main-content">
-            <div id = "welcome">
+            <div id ="landing">
+              <img src="/images/main.jpg">
+              <h1>Programmer - Educator - Scholar</h1>
             </div>
             <div id="intro-main">
               <img src="/images/posse.jpg">
@@ -37,11 +53,6 @@
                 bringing my skills into education so that I can help foster the next generation of PoC students in tech
                 so that the field can be diversified and all students can have an equal opportunity to get involved in CS.</p>
               <p>Click on the buttons below to learn more about myself and the work I have done!</p>
-              <div class="buttons">
-                <button onclick="swapHidden('intro-main','projects')">Projects</button>
-                <button onclick="swapHidden('intro-main','gallery')">Gallery</button>
-                <button onclick="swapHidden('intro-main','interests')">Interests & Hobbies</button>
-              </div>
             </div>
             <!--Below is the code for the projects page.-->
             <div id="projects">
@@ -73,11 +84,6 @@
                     completing a redesign of the video editor (which many of its features are still live on the site).</p>
                 </div>
               </div>   
-              <div class="buttons">
-                <button onclick="swapHidden('projects','intro-main')">Return To Main Page</button>
-                <button onclick="swapHidden('projects','gallery')">Gallery</button>
-                <button onclick="swapHidden('projects','interests')">Interests</button>
-              </div>
             </div>
             <!--Below is the code for the gallery page and its grid.-->
             <div id="gallery">
@@ -89,30 +95,32 @@
                 <img src="/images/inspiredxSTEM.jpg">
                 <img src="/images/animoto.jpg">
               </div>
-              <div class="buttons">
-                <button onclick="swapHidden('gallery','intro-main')">Return To Main Page</button>
-                <button onclick="swapHidden('gallery','projects')">Projects</button>
-                <button onclick="swapHidden('gallery','interests')">Interests</button>
-              </div>
-            </div>
-            <!--Below is the code for the "Interests" page. Due to time constraints, this page isn't implemented but the code is left here so that I can complete
-                later.-->
-            <div id="comments">
-              <h2>Comments</h2>
-              <p>Feel free to leave comments below!</p>
-              <form action="/data" method="POST">
-                <p>Name</p>
-                <input type="text" name="user-name">
-                <br/>
-                <p>Comment</p>
-                <input type="text" name="user-comment">
-                <br/> <br/>
-                <input type="submit" />
-              </form>
-              <div id="comment-box">
-              </div>
             </div>
           </div>
+          <div class="comment-btn" onclick="swapView()">
+            <p>Comments</p>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <!--Below is the code for the comment section.-->
+    <div id="comment-content">
+      <div id="comments">
+        <div id="comments-head">
+          <h2>Comments</h2>
+          <p>Feel free to leave comments below!</p>
+          <form action="/data" method="POST">
+            <p>Name</p>
+            <input type="text" name="user-name">
+            <p>Comment</p>
+            <input type="text" name="user-comment">
+            <input type="submit" />
+          </form>
+        </div>
+        <div id="comment-box"></div>
+      </div>
+      <div class="comment-btn" onclick="swapView()">
+        <p>Portfolio</p>
       </div>
     </div>
   </body>

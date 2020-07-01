@@ -1,19 +1,19 @@
 /* These are general stylings that are used throughout the portfolio. */
 h1 {
     font-family: impact;
-    color: rgb(225, 170, 18);
+    color: #36383b;
 }
 
 h2 {
     font-family: Haettenschweiler;
     font-weight: 400;
-    color: rgb(225, 170, 18);
+    color: white;
 }
 
 p {
     font-family: 'Arial Narrow Bold';
     font-size: 16px;
-    color: white;
+    color: black;
 }
 
 html, body {
@@ -30,6 +30,7 @@ html, body {
   height: 100%;
 }
 
+/* Header styling. */
 #header {
     position: fixed;
     display: flex;
@@ -37,48 +38,94 @@ html, body {
     align-items: center;
     height: 100px;
     width: 100%;
-    background: rgb(44, 62, 80);
+    background: #2b2d2f;
+}
+
+#header-btns {
+    display: inline-flex;
+    padding-left: 30vw;
+    position: relative;
+}
+
+@keyframes btn-transition {
+    0% {
+        color:white;
+        animation-play-state: running;
+    };
+    100% {
+        color:rgb(225, 170, 18);
+        animation-play-state: paused;
+    };
+}
+
+#header-btns h2{
+    margin-right: 10px;
+    height: 100%;
+}
+
+#header-btns h2:hover {
+    animation-name: btn-transition;
+    animation-duration: .5s;
+    animation-direction: alternate;
+    color: rgb(225, 170, 18);
+    cursor: none;
+}
+
+#header-language-select {
+    position: relative;
+    margin-left: 10px;
 }
 
 .header-text {
-    font-size: 20px;
-    font-weight: 600;
-    color:white;
     padding-left: 25vw;
 }
 
+/* Styling for the div wrapping the page's content (except header). */
 #main {
-    margin-top: 100px;
     height: 100%;
 }
 
 #main-content {
-    padding-left: 20vw;
-    padding-right: 20vw;
-    padding-top: 5vh;
     text-align: center;
+    height:93vh;
 }
 
-/* Below is styling for the intro and About Me pages. */
-#greeting-container {
-  margin-top: 20px;
+/* Styling for the landing page */
+@keyframes landing-fade-in {
+    0% {opacity: 0};
+    100% {opacity: 1};
 }
 
-#intro-main {
-    display: none;
+#landing {
+    padding-top: 25vh;
+    animation-name: landing-fade-in;
+    animation-duration: 1s;
 }
 
-#intro {
-    background: rgb(0, 128, 137);
-    height:100%;
+#landing h1 {
+    color: #2b2d2f;
+    padding-top: 25px;
+    font-family: Haettenschweiler;
 }
 
-#welcome img {
+#landing img {
     border-radius: 50%;
     max-width: 300px;
     max-height: 300px;
     width: auto;
     height: auto;
+}
+
+/* Below is styling for the intro and About Me pages. */
+
+#intro-main {
+    display: none;
+    padding-top: 100px;
+}
+
+#intro {
+    background: #f7f3ef;
+    height: 93vh;
 }
 
 #intro-main img {
@@ -89,14 +136,10 @@ html, body {
     height: auto;
 }
 
-/* This is the styling for the page's buttons. */
-.buttons {
-    padding: 20px;
-}
-
 /* Below is the styling for the Projects page. */
 #projects {
     display: none;
+    padding-top: 100px;
 }
 
 .project-box{
@@ -128,6 +171,7 @@ html, body {
 /* Below is the styling for the gallery. */
 #gallery {
     display: none;
+    padding-top: 100px;
 }
 
 #gallery-grid {
@@ -142,16 +186,49 @@ html, body {
     border-radius: 25%;
 }
 
-/* Bwlow is all the styling for the comment section. */
+/* Below is all the styling for the comment section. */
+#comment-content {
+    display: none;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+#comment-content h2{
+    margin-top: 0%;
+    padding-top: 0%;
+    color: #2b2d2f;
+}
+
 #comments {
-    background: rgb(0, 176, 166);
+    background: #f7f3ef;
+    height: 93vh;
 }
 
 .comment-style {
     text-align: left;
     padding-left: 5vw;
     padding-right: 5vw;
-    margin-left: 5vw;
-    margin-right: 5vw
-    background: rgb(7, 36, 70);
+}
+
+/* Comment footer button styling. */
+.comment-btn {
+    background-color: #2b2d2fad;
+    width: 100vw;
+    position: absolute;
+    height: 7vh;
+    transition: background-color .5s;
+    cursor: none;
+}
+
+.comment-btn p{
+    transition: color .5s;
+}
+
+.comment-btn:hover {
+    background-color: #2b2d2f;
+}
+
+.comment-btn:hover p{
+    color: rgb(225, 170, 18);
 }
